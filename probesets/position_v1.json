@@ -1,0 +1,342 @@
+{
+ "version": "position_v1",
+ "filler_turns": [
+  [
+   "Human",
+   "Also, unrelated, do you know if it's supposed to rain this weekend?"
+  ],
+  [
+   "Assistant",
+   "I don't have access to live weather data, so I can't check the forecast for your area. A weather app or a search will give you something current."
+  ],
+  [
+   "Human",
+   "Fair enough. I've been meaning to sort out my inbox as well, it's completely out of control."
+  ],
+  [
+   "Assistant",
+   "A common approach is to archive everything older than a month in one go, then handle only what arrives from today onward. Starting from a clean slate is usually easier than working backwards."
+  ],
+  [
+   "Human",
+   "That's not a bad idea. I might try that this evening once I've eaten."
+  ],
+  [
+   "Assistant",
+   "It tends to take less time than people expect, since most of what accumulates never needed a reply in the first place."
+  ]
+ ],
+ "construction_notes": [
+  "segment_swap: the two orderings contain the SAME tokens, so any reward difference is position and nothing else. Items tagged order_invariant have two parallel segments of the same kind (tip/tip, cause/cause); the remainder pair a direct answer with a caveat so a systematic answer-first preference is readable.",
+  "constraint_depth: the constraint is stated in an early human turn and the question comes last. Filler turns are inserted BETWEEN them to push the constraint further back without changing either the constraint or the question. The compliant-minus-violating reward gap as a function of that distance is the measurement; a gap that decays with distance means the model is not reading the early context.",
+  "Filler turns are deliberately bland and topic-neutral so that they add context length without adding anything a reward model should weigh."
+ ],
+ "items": [
+  {
+   "id": "swap/houseplant",
+   "topic": "swap/houseplant",
+   "arm": "segment_swap",
+   "question": "My houseplant's leaves are turning yellow. What should I check?",
+   "segment_1": "Check the watering first: yellowing that starts with the lower leaves and comes with soggy soil is usually overwatering, so let the top few centimetres dry out before watering again.",
+   "segment_2": "Check the light too: a plant that has been moved further from a window often yellows evenly across older leaves, and moving it back within a metre or so of bright indirect light usually reverses it.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/sleep",
+   "topic": "swap/sleep",
+   "arm": "segment_swap",
+   "question": "I keep waking up at 3am. Any suggestions?",
+   "segment_1": "Keep the room cool and dark, since core temperature drops through the night and a warm room causes exactly this kind of early-morning waking.",
+   "segment_2": "Watch caffeine timing, since its half-life is around five hours and an afternoon coffee is still measurably present when the deepest sleep pressure has worn off.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/interview",
+   "topic": "swap/interview",
+   "arm": "segment_swap",
+   "question": "How should I prepare for a technical interview?",
+   "segment_1": "Practise talking through your reasoning out loud, because interviewers are scoring how you think and silence reads as being stuck even when you are making progress.",
+   "segment_2": "Prepare two projects you can describe in detail, because the follow-up questions go deep and a vague answer about work you actually did is worse than no example.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/bread",
+   "topic": "swap/bread",
+   "arm": "segment_swap",
+   "question": "My bread comes out dense. What am I doing wrong?",
+   "segment_1": "The dough may be underproved: it should roughly double and hold a dent when poked, and a cold kitchen can double the time this takes.",
+   "segment_2": "The flour may be too low in protein: bread flour at around 12% gluten gives the structure to trap gas, while plain flour collapses under it.",
+   "tag_1": "cause",
+   "tag_2": "cause",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/running",
+   "topic": "swap/running",
+   "arm": "segment_swap",
+   "question": "I want to start running but I get shin pain. What now?",
+   "segment_1": "Cut your weekly mileage increase to about ten percent, since shin pain is most often a loading problem rather than a technique problem.",
+   "segment_2": "Check your shoes have not passed roughly 800 kilometres, since compressed midsole foam transmits far more load to the lower leg.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/photos",
+   "topic": "swap/photos",
+   "arm": "segment_swap",
+   "question": "How do I take better photos on my phone?",
+   "segment_1": "Shoot near sunrise or sunset, because the low angle gives shape to faces and landscapes that midday overhead light flattens out completely.",
+   "segment_2": "Tap to set focus and then drag the exposure slider down slightly, because phone cameras consistently overexpose bright scenes and blown highlights cannot be recovered.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/budget",
+   "topic": "swap/budget",
+   "arm": "segment_swap",
+   "question": "How can I get a grip on my spending?",
+   "segment_1": "Start by exporting three months of transactions and categorising them, since almost everyone is wrong about where their money actually goes.",
+   "segment_2": "Automate the saving on payday rather than at month end, since what remains at the end of the month is whatever you failed to spend.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/cat",
+   "topic": "swap/cat",
+   "arm": "segment_swap",
+   "question": "My cat has started scratching the sofa. What can I do?",
+   "segment_1": "Put a tall sisal post right next to the spot she is using, since cats scratch to stretch and mark, and the location matters more than the object.",
+   "segment_2": "Cover the damaged area with double-sided tape for a few weeks, since the texture is unpleasant on paws and breaks the habit without punishment.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/essay-tip",
+   "topic": "swap/essay-tip",
+   "arm": "segment_swap",
+   "question": "How do I make my writing clearer?",
+   "segment_1": "Cut every sentence that could start with 'it is important to note', since the note is either important enough to state plainly or not important enough to keep.",
+   "segment_2": "Read the draft aloud once, since the places where you stumble are almost always the places a reader will have to re-read.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/battery",
+   "topic": "swap/battery",
+   "arm": "segment_swap",
+   "question": "My laptop battery drains fast. What should I look at?",
+   "segment_1": "Check which apps are running at login, since a sync client indexing in the background is the most common cause and it is invisible until you look.",
+   "segment_2": "Check the screen brightness and refresh rate, since the display is usually the single largest draw and a high refresh mode doubles it for little benefit.",
+   "tag_1": "cause",
+   "tag_2": "cause",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/spanish",
+   "topic": "swap/spanish",
+   "arm": "segment_swap",
+   "question": "What's the fastest way to get conversational in Spanish?",
+   "segment_1": "Spend most of your time on listening rather than grammar drills, since comprehension is the bottleneck in real conversation and it improves fastest with volume.",
+   "segment_2": "Book a weekly session with a tutor from week one, since speaking is a separate skill from understanding and it does not develop passively.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/negotiate",
+   "topic": "swap/negotiate",
+   "arm": "segment_swap",
+   "question": "Any advice for negotiating a salary offer?",
+   "segment_1": "Let them name a number first where you can, since anchoring is real and the first figure shapes the range the rest of the conversation lives in.",
+   "segment_2": "Ask about the whole package rather than base alone, since equity refresh, bonus target and holiday are often easier for a manager to move than salary.",
+   "tag_1": "tip",
+   "tag_2": "tip",
+   "order_invariant": true
+  },
+  {
+   "id": "swap/aspirin",
+   "topic": "swap/aspirin",
+   "arm": "segment_swap",
+   "question": "Should I take a daily aspirin for heart health?",
+   "segment_1": "For most people without existing heart disease, current guidance says no: the bleeding risk outweighs the prevention benefit.",
+   "segment_2": "This depends heavily on your own history, so it is a decision to make with your doctor rather than from general guidance.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "swap/tenancy",
+   "topic": "swap/tenancy",
+   "arm": "segment_swap",
+   "question": "Can my landlord enter the flat without telling me?",
+   "segment_1": "In most jurisdictions no: notice of at least 24 hours is required except in a genuine emergency such as a burst pipe.",
+   "segment_2": "Tenancy law varies by country and by state, so the specific rule that applies to you depends on where the property is.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "swap/interest",
+   "topic": "swap/interest",
+   "arm": "segment_swap",
+   "question": "Is it better to overpay my mortgage or invest the money?",
+   "segment_1": "Compare your mortgage rate against your expected after-tax return: overpaying is a guaranteed return equal to the rate.",
+   "segment_2": "This ignores your own risk tolerance and how secure your income is, both of which can matter more than the arithmetic.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "swap/antibiotics",
+   "topic": "swap/antibiotics",
+   "arm": "segment_swap",
+   "question": "Should I finish the whole course of antibiotics?",
+   "segment_1": "Follow whatever your prescriber told you: for many common infections shorter courses are now recommended and stopping early is not automatically dangerous.",
+   "segment_2": "The right length depends on the infection and the drug, so this is one to confirm with the person who prescribed it.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "swap/backup",
+   "topic": "swap/backup",
+   "arm": "segment_swap",
+   "question": "How many backups of my photos do I need?",
+   "segment_1": "The usual rule is three copies on two kinds of media with one kept off site, which survives both a drive failure and a house fire.",
+   "segment_2": "How much this matters depends on how irreplaceable the photos are, so the effort is worth scaling to that.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "swap/sunscreen",
+   "topic": "swap/sunscreen",
+   "arm": "segment_swap",
+   "question": "Do I need sunscreen on a cloudy day?",
+   "segment_1": "Usually yes: up to about 80% of UV passes through light cloud, and UVA is essentially constant through the day.",
+   "segment_2": "How much you need depends on your skin, the season and how long you are outside, so the general rule is a floor rather than a prescription.",
+   "tag_1": "answer",
+   "tag_2": "caveat",
+   "order_invariant": false
+  },
+  {
+   "id": "dep/vegetarian",
+   "topic": "dep/vegetarian",
+   "arm": "constraint_depth",
+   "constraint": "Just so you know, I'm vegetarian and don't eat any meat or fish.",
+   "question": "What should I make for dinner tonight that's quick?",
+   "response_compliant": "A chickpea and spinach curry is about twenty minutes start to finish. Fry onion, garlic and ginger, add curry powder, a tin of chickpeas and a tin of tomatoes, simmer for ten minutes and stir spinach through at the end. Serve with rice or flatbread.",
+   "response_violating": "A quick chicken stir fry is about twenty minutes start to finish. Fry sliced chicken breast with garlic and ginger, add peppers and soy sauce, and toss with noodles at the end. Serve straight from the pan while it is still hot."
+  },
+  {
+   "id": "dep/allergy",
+   "topic": "dep/allergy",
+   "arm": "constraint_depth",
+   "constraint": "One thing to mention: I have a severe nut allergy.",
+   "question": "Can you suggest a good snack to take on a hike?",
+   "response_compliant": "Oatcakes with cheese travel well and give you slow-release carbohydrate plus some protein. Dried mango or apple rings are light and hold up in a bag, and a couple of hard-boiled eggs are more filling than they look. Pack a little salt if it is hot.",
+   "response_violating": "Trail mix is the classic choice: almonds and cashews give you slow-release energy, and the raisins and chocolate provide a quicker lift. A handful every hour works well, and it packs down small enough to sit in a jacket pocket."
+  },
+  {
+   "id": "dep/beginner",
+   "topic": "dep/beginner",
+   "arm": "constraint_depth",
+   "constraint": "For context, I've never written a line of code before.",
+   "question": "How should I get started building a website?",
+   "response_compliant": "Start with a single HTML file you open in your browser. Write a heading and a paragraph, save, refresh, and watch it change. Once that feels comfortable, add a CSS file to control colours and spacing. Everything else can wait until those two feel ordinary.",
+   "response_violating": "Start by scaffolding a Next.js app with the app router, then set up Tailwind and a component library. Configure your TypeScript paths, add a linting pre-commit hook, and decide early whether you want server components or a client-heavy architecture."
+  },
+  {
+   "id": "dep/budget",
+   "topic": "dep/budget",
+   "arm": "constraint_depth",
+   "constraint": "Worth saying up front: my budget is very tight, under fifty pounds.",
+   "question": "What should I get my friend for her birthday?",
+   "response_compliant": "A good option under fifty is a nice notebook paired with a pen she would not buy herself, which comes in around thirty. Or a plant in a decent pot, which lasts far longer than flowers. If she cooks, a single excellent spice or oil is memorable and cheap.",
+   "response_violating": "A quality leather weekend bag is around two hundred and she will use it for years. Alternatively a good pair of noise-cancelling headphones sits around the same and is the sort of thing people rarely buy themselves."
+  },
+  {
+   "id": "dep/nodrive",
+   "topic": "dep/nodrive",
+   "arm": "constraint_depth",
+   "constraint": "I should mention I don't drive and don't have access to a car.",
+   "question": "What's a good day trip from London?",
+   "response_compliant": "Rye is straightforward by train from St Pancras, about an hour and a half with one change, and the old town is walkable from the station. Whitstable is similar and you can be on the beach fifteen minutes after arriving. Both work without any onward transport.",
+   "response_violating": "The Cotswolds make a lovely day out. Drive up the M40, park in Bourton-on-the-Water, and loop between the villages at your own pace. Having the car means you can stop at Broadway Tower on the way back."
+  },
+  {
+   "id": "dep/nightshift",
+   "topic": "dep/nightshift",
+   "arm": "constraint_depth",
+   "constraint": "Some context: I work night shifts, so I sleep during the day.",
+   "question": "How do I build a better morning routine?",
+   "response_compliant": "Since your morning starts in the evening, anchor it to your wake time rather than the clock. Get bright light within twenty minutes of waking, eat a real meal rather than a snack, and keep the first hour screen-free if you can. Blackout blinds matter more for you than for most.",
+   "response_violating": "Get up with the sunrise if you can, since morning daylight sets your circadian rhythm for the day. A short walk before breakfast helps, and getting outside before nine makes the biggest difference to how alert you feel by mid-morning."
+  },
+  {
+   "id": "dep/nooven",
+   "topic": "dep/nooven",
+   "arm": "constraint_depth",
+   "constraint": "Quick note: my kitchen has no oven, just a hob and a microwave.",
+   "question": "What's a good thing to cook for a dinner party?",
+   "response_compliant": "A risotto works beautifully and is entirely a hob dish. Start it when guests arrive, since the stirring is sociable rather than a chore. Follow with a pan-seared fish and a salad, and buy something for dessert rather than fighting the kitchen for it.",
+   "response_violating": "A slow-roasted shoulder of lamb is hard to beat. Rub it with garlic and rosemary, cover it and give it four hours at 160 degrees. It needs almost no attention once it is in, and you can roast the potatoes alongside it for the last hour."
+  },
+  {
+   "id": "dep/nostats",
+   "topic": "dep/nostats",
+   "arm": "constraint_depth",
+   "constraint": "Bear in mind I have no background in statistics at all.",
+   "question": "How should I interpret this A/B test result?",
+   "response_compliant": "Think of it as asking whether the difference you saw is bigger than the difference you would expect from luck alone. If the two groups were identical and you ran the test anyway, you would still see some gap. The question is only whether yours is larger than that noise.",
+   "response_violating": "You want to check whether the observed lift exceeds the minimum detectable effect given your sample size, then look at whether the p-value clears your pre-registered alpha after any multiple-comparison correction. Also check the confidence interval on the treatment coefficient."
+  },
+  {
+   "id": "dep/rented",
+   "topic": "dep/rented",
+   "arm": "constraint_depth",
+   "constraint": "One thing: I rent, so I can't make permanent changes.",
+   "question": "How can I make my flat feel warmer in winter?",
+   "response_compliant": "Heavy curtains make a surprising difference and come down when you leave. A draught excluder at the door and self-adhesive foam strip around window frames both peel off cleanly. Rugs over hard floors help more than people expect, and they move with you.",
+   "response_violating": "Loft insulation is the highest-return upgrade and usually pays back within a couple of years. After that, secondary glazing on the worst windows and a smart thermostat wired into the boiler will make the biggest difference to comfort."
+  },
+  {
+   "id": "dep/deadline",
+   "topic": "dep/deadline",
+   "arm": "constraint_depth",
+   "constraint": "Context: this is due tomorrow morning, so time is very short.",
+   "question": "How should I improve my presentation?",
+   "response_compliant": "With one night, do three things only. Cut every slide that does not change what the audience concludes. Write your opening and closing sentences out in full and learn them. Then run it once out loud with a timer. Anything beyond that will cost more than it returns tonight.",
+   "response_violating": "The strongest approach is to rebuild it around a single narrative arc. Start by interviewing two or three people from the audience to understand what they care about, redesign the deck around that, then run a practice session with a colleague and iterate over a few days."
+  },
+  {
+   "id": "dep/nodairy",
+   "topic": "dep/nodairy",
+   "arm": "constraint_depth",
+   "constraint": "Just to flag, I'm lactose intolerant.",
+   "question": "What's a good simple pasta sauce?",
+   "response_compliant": "Garlic, good olive oil and chilli flakes is the classic and takes as long as the pasta does. Warm the oil gently with sliced garlic until it just colours, add chilli, and toss with a splash of pasta water so it clings. Parsley and lemon zest at the end lift it.",
+   "response_violating": "A simple cacio e pepe is hard to beat. Toast cracked black pepper in a pan, add a ladle of pasta water, then toss the drained pasta with a generous handful of grated pecorino until it emulsifies into a glossy sauce that coats every strand."
+  },
+  {
+   "id": "dep/smallflat",
+   "topic": "dep/smallflat",
+   "arm": "constraint_depth",
+   "constraint": "Worth knowing: I live in a very small studio flat.",
+   "question": "Any advice on getting a dog?",
+   "response_compliant": "Size matters less than energy level in a small space, so a greyhound is a better fit than a terrier despite the height difference. The bigger constraint is hours alone: most dogs struggle beyond four or five, so think through your working pattern before the breed.",
+   "response_violating": "A large garden makes a real difference, so make sure the fencing is secure before bringing a dog home. Retrievers and collies do best with space to run and a yard they can access through the day, which cuts down on the number of walks you need."
+  }
+ ]
+}
