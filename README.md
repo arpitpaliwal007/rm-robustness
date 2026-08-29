@@ -13,7 +13,6 @@ much of the rest matters:
 Everything runs on a single T4 in a few hours. Nothing here needs more than 16GB.
 
 Design and day-zero findings, as a page:
-<https://claude.ai/code/artifact/5a6db360-e62b-4b92-b5ac-3b8ca8b0482a>
 
 ---
 
@@ -137,7 +136,7 @@ does exist is *where in the text the score comes from*:
   32 tokens matches accuracy at 512, the model grades the opening and skims the rest,
   which is exactly what a policy optimising against it will learn to exploit.
 - **sentence_reversal** — the control. Real responses with sentences reversed. A model
-  showing zero here is order-blind, which makes a null in `segment_swap` uninformative
+
   rather than reassuring.
 
 `probesets/position_v1.json` — 18 swap items (12 order-invariant, 6 answer-vs-caveat)
