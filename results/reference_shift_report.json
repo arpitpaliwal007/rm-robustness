@@ -1,0 +1,11 @@
+{
+  "datasets": ["RewardBench", "JudgeBench", "Skywork-80K"],
+  "policy": "Qwen3 PPO checkpoints",
+  "reward_model": "3B reward model",
+  "reference_result": {
+    "reward_model_accuracy_start": 0.72,
+    "reward_model_accuracy_largest_shift": 0.50,
+    "llm_judge_accuracy_range": [0.80, 0.88]
+  },
+  "note": "Reported benchmark summary; not a locally reproduced run."
+}

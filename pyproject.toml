@@ -1,12 +1,9 @@
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
-
 [project]
-name = "rm-robustness"
+name = "align-drift"
 version = "0.1.0"
-description = "Reward model robustness study on HH-RLHF: length, sycophancy, position, distribution shift"
-requires-python = ">=3.9"
-
+requires-python = ">=3.10"
 [tool.setuptools.packages.find]
-include = ["rmrobust*"]
+where = ["src"]
